@@ -4,48 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DC707B9A"
+    android:orientation="vertical"
     tools:context=".MainActivity">
-
-    <ImageView
-        android:id="@+id/imageView23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/logofestapp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_anchor="@+id/imageView23"
-        app:layout_anchorGravity="bottom|center">
-
-        <Button
-            android:id="@+id/btnfest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#606898"
-            android:text="Empresa" />
-
-        <Button
-            android:id="@+id/btnprod"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FF606898"
-            android:text="Productos" />
-
-        <Button
-            android:id="@+id/btnserv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FF606898"
-            android:text="Servicios" />
+        <FrameLayout
+            android:id="@+id/contenedor_fragments"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

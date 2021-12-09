@@ -2,56 +2,38 @@ package com.example.fest;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-
-
-
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnEmp;
-    Button btnProdu;
-    Button btnServi;
+    Fragment subPantallaInicio;
+    Fragment subPantallaProductos;
+    Fragment subPantallaServicios;
+    Fragment subPantallaEmpresa;
+    Fragment subPantallaSucursal;
+    Fragment subPantallaFavoritos;
+    FragmentTransaction intercambio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 /*---------------------------------------------------------------------------------------------*/
-        btnEmp = (Button) findViewById(R.id.btnfest);
-        btnEmp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent pantallaEmp = new Intent(getApplicationContext(), MainActivity2.class);
-                startActivity(pantallaEmp);
-            }
-        });
-
-        btnProdu = (Button) findViewById(R.id.btnprod);
-        btnProdu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent pantallaEmp = new Intent(getApplicationContext(), MainActivity3.class);
-                startActivity(pantallaEmp);
-            }
-        });
-
-        btnServi = (Button) findViewById(R.id.btnserv);
-        btnServi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent pantallaEmp = new Intent(getApplicationContext(), MainActivity4.class);
-                startActivity(pantallaEmp);
-            }
-        });
+        subPantallaInicio = new FragmentInicio();
+        subPantallaProductos = new FragmentProductos();
+        subPantallaServicios = new FragmentServicios();
+        subPantallaEmpresa = new FragmentEmpresa();
+        subPantallaSucursal = new FragmentSucursales();
+        subPantallaFavoritos = new FragmentFavoritos();
+        intercambio = getSupportFragmentManager().beginTransaction();
+        getSupportFragmentManager().beginTransaction().add(R.id.contenedor_fragments, subPantallaInicio).commit();
 /*---------------------------------------------------------------------------------------------*/
     }
 /*----------------------------------------------------------------*/
@@ -65,20 +47,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        intercambio = getSupportFragmentManager().beginTransaction();
         if(id == R.id.itemempresa){
-            Intent pantallaEmp = new Intent(getApplicationContext(), MainActivity2.class);
-            startActivity(pantallaEmp);
+            intercambio.replace(R.id.contenedor_fragments, subPantallaEmpresa).commit();
         }
         if(id == R.id.itemprod){
-            //Toast.makeText(this, "Seleccionó opción Productos", Toast.LENGTH_LONG).show();
-            Intent pantallaEmp = new Intent(getApplicationContext(), MainActivity3.class);
-            startActivity(pantallaEmp);
+            intercambio.replace(R.id.contenedor_fragments, subPantallaProductos).commit();
         }
         if(id == R.id.itemserv){
-            //Toast.makeText(this, "Seleccionó opción servicios", Toast.LENGTH_LONG).show();
-            Intent pantallaEmp = new Intent(getApplicationContext(), MainActivity4.class);
-            startActivity(pantallaEmp);
+            intercambio.replace(R.id.contenedor_fragments, subPantallaServicios).commit();
+        }
+        if(id == R.id.itemsuc){
+            intercambio.replace(R.id.contenedor_fragments, subPantallaSucursal).commit();
+        }
+        if(id == R.id.itemfav){
+            intercambio.replace(R.id.contenedor_fragments, subPantallaSucursal).commit();
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
